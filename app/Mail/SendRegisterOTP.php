@@ -13,7 +13,7 @@ use App\Models\User;
 class SendRegisterOTP extends Mailable
 {
     use Queueable, SerializesModels;
-    protected $user;
+    public $user;
 
     /**
      * Create a new message instance.
