@@ -3,6 +3,9 @@ use App\Http\Controllers\AuthenticationController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ForgotPasswordController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProfileController;
+
 
 // Route::get('/user', function (Request $request) {
 //     return $request->user();
@@ -21,5 +24,9 @@ Route::prefix('forgot-password')->group(function(){
 });
 
 Route::post('/login', [\App\Http\Controllers\AuthenticationController::class, 'login']); // Login user
+Route::get('/slider', [HomeController::class, 'getSlider']);
 
-
+Route::middleware('auth:sanctum')->group(function(){
+    Route::get('/profile', [ProfileController::class, 'getProfile']); // Get user profile
+    Route::patch('/profile', [ProfileController::class, 'updateProfile']); // Update user profile
+});
